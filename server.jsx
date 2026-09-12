@@ -10,6 +10,7 @@ const app = express()
 const adminRouter = require("./router/adminRouter.jsx")
 const connectdb = require("./db/connectdb.jsx")
 const paymentRouter = require("./router/paymentRoute.js")
+const userRouter = require("./router/userRouter.jsx")
 
 app.use(cors());
 app.use(express.json());
