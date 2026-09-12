@@ -22,7 +22,7 @@ app.use("/api/users",userRouter)
 
 
 app.use("/",(req,res)=>{
-    res.send("Server Connected")
+    res.send("Server Connected Again")
 })
 
 app.listen(process.env.PORT,()=>{
