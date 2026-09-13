@@ -25,17 +25,17 @@ const loginUser = async (req,res) =>{
         const {email,password} = req.body
         const userExists = await userModel.findOne({email})
         if(!userExists){
-            res.status(400).json({success:false,message:"User Already Exists"})
+            return res.status(400).json({success:false,message:"User Already Exists"})
         }
 
 
         if(password !== userExists.password){
-            res.status(400).json({success:false,message:"Password does not Match"})
+            return res.status(400).json({success:false,message:"Password does not Match"})
         }
 
         const token = jwt.sign({userId : userExists._id}, process.env.JWT_SECRET, {expiresIn:"7d"})
         
-        res.status(200).json({success:true,message:"Login Successful",token})
+        return res.status(200).json({success:true,message:"Login Successful",token})
 
 
     }catch(err){
