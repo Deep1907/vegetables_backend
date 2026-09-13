@@ -45,4 +45,4 @@ const loginUser = async (req,res) =>{
 
 
 
-module.exports = {addUser}
+module.exports = {addUser,loginUser}
