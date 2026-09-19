@@ -1,6 +1,8 @@
 const express = require("express")
 const razorpayInstance = require("../utils/razorpay.js")
 
+const Payment = require("../models/Payment.jsx")
+
 const paymentController = async (req,res) =>{
     try{
 
@@ -16,7 +18,19 @@ const paymentController = async (req,res) =>{
 
         console.log("Order",order)
 
-        res.json({order})
+        const payment = new Payment({
+            userId : req.user._id,
+            orderId : order.id,
+            status : order.status,
+            amount : order.amount,
+            currency : order.currency,
+            receipt : order.receipt,
+            notes : order.notes
+        })
+
+        const savedPayment = await payment.save()
+
+        res.json({ ...savedPayment.toJSON() })
 
     }catch(err){
         console.log(err)
