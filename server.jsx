@@ -12,7 +12,9 @@ const connectdb = require("./db/connectdb.jsx")
 const paymentRouter = require("./router/paymentRoute.js")
 const userRouter = require("./router/userRouter.jsx")
 
-app.use(cors());
+app.use(cors({
+    origin: "https://vegetables-frontend.vercel.app"
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
