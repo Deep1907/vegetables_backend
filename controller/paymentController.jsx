@@ -6,7 +6,11 @@ const Payment = require("../models/Payment.jsx")
 const paymentController = async (req,res) =>{
     try{
 
-        const amount = req.body.totalAmount
+        const amount = Math.round(req.body.totalAmount * 100); // rupees -> paise, integer
+
+        if (!amount || amount < 100) {
+            return res.status(400).json({ message: "Invalid amount" });
+        }
 
         const order = await razorpayInstance.orders.create({
             "amount":amount,
