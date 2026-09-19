@@ -6,7 +6,7 @@ const Payment = require("../models/Payment.jsx")
 const paymentController = async (req,res) =>{
     try{
 
-        const amount = Math.round(req.body.totalAmount * 100); // rupees -> paise, integer
+        const amount = Math.round(req.body.amount * 100); // rupees -> paise, integer
 
         if (!amount) {
             return res.status(400).json({ message: "Invalid amount" });
