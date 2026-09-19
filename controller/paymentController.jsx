@@ -42,7 +42,7 @@ const paymentController = async (req, res) => {
 
         const savedPayment = await payment.save();
 
-        res.json(savedPayment);
+        res.json({...savedPayment.toJSON(),keyId:process.env.KEY_ID,amount,orderId,notes,currency});
 
     } catch (err) {
         console.log("PAYMENT ERROR:", err);
