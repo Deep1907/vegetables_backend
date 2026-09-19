@@ -1,7 +1,7 @@
 const userModel = require("../models/Users.jsx");
 const jwt = require("jsonwebtoken");
 
-export const isAuthenticated = async (req, res, next) => {
+ const isAuthenticated = async (req, res, next) => {
 
     try {
 
@@ -45,3 +45,5 @@ export const isAuthenticated = async (req, res, next) => {
 
     }
 };
+
+module.exports = isAuthenticated;
