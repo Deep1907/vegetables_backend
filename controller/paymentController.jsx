@@ -6,8 +6,10 @@ const Payment = require("../models/Payment.jsx")
 const paymentController = async (req,res) =>{
     try{
 
+        const amount = req.body.totalAmount
+
         const order = await razorpayInstance.orders.create({
-            "amount":50000,
+            "amount":amount,
             "currency":"INR",
             "receipt":"receipt#1",
             "notes":{
