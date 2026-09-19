@@ -8,7 +8,7 @@ const paymentController = async (req,res) =>{
 
         const amount = Math.round(req.body.totalAmount * 100); // rupees -> paise, integer
 
-        if (!amount || amount < 100) {
+        if (!amount) {
             return res.status(400).json({ message: "Invalid amount" });
         }
 
