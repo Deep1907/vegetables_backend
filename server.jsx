@@ -15,6 +15,12 @@ const userRouter = require("./router/userRouter.jsx")
 app.use(cors({
     origin: "https://vegetables-frontend.vercel.app"
 }));
+
+app.use(
+    "/api/payment/webhook",
+    express.raw({ type: "application/json" })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
