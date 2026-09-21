@@ -78,4 +78,10 @@ paymentRouter.post("/webhook", async (req, res) => {
     }
 });
 
+paymentRouter.get("/verify",isAuthenticated, async (req,res)=>{
+    return res.status(200).json({
+        message:"Verified Successful"
+    })
+})
+
 module.exports = paymentRouter;
