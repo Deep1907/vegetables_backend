@@ -78,20 +78,31 @@ paymentRouter.post("/webhook", async (req, res) => {
     }
 });
 
-paymentRouter.get("/verify",isAuthenticated, async (req,res)=>{
+paymentRouter.post("/verify", isAuthenticated, async (req, res) => {
+    try {
+        const {
+            razorpay_payment_id,
+            razorpay_order_id,
+            razorpay_signature
+        } = req.body;
 
-    try{
+        console.log("Payment ID:", razorpay_payment_id);
+        console.log("Order ID:", razorpay_order_id);
+        console.log("Signature:", razorpay_signature);
 
-        const {razorpay_payment_id,razorpay_order_id,razorpay_signature} = req.body;
         return res.status(200).json({
-            success:true,
-            message:"Verified Successful"
-        })
+            success: true,
+            message: "Verified Successful"
+        });
 
-    }catch(err){
-        console.log(err)
+    } catch (err) {
+        console.log(err);
+
+        return res.status(500).json({
+            success: false,
+            message: "Verification failed"
+        });
     }
-    
-})
+});
 
 module.exports = paymentRouter;
